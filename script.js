@@ -123,17 +123,18 @@ setInterval(() => {
     show2025();
   }
 
-  if (diff <= 10 && diff > 0) {
-    musicAmbient.pause();
-    musicAmbient.currentTime = 0;
+  if (diff <= 10 && diff > 0 && !countdownStarted) {
+  musicAmbient.pause();
+  musicAmbient.currentTime = 0;
 
-    musicCountdown.volume = 0.8;
-    musicCountdown.play();
+  musicCountdown.currentTime = 0;
+  musicCountdown.volume = 0.8;
+  musicCountdown.play();
 
-    yearEl.classList.add("hidden");
-    startCountdown();
-  }
-}, 500);
+  yearEl.classList.add("hidden");
+  startCountdown();
+}
+, 500);
 
 // ================= FOGOS =================
 const canvas = document.getElementById("fireworks");
@@ -191,4 +192,5 @@ function animate() {
 }
 
 animate();
+
 
