@@ -1,5 +1,5 @@
 // ================= CONFIG =================
-const TEST_MODE = false; // true pra testar rápido
+const TEST_MODE = false; // false no dia real
 
 // ================= ELEMENTOS =================
 const startScreen = document.getElementById("startScreen");
@@ -13,10 +13,10 @@ const musicAmbient = document.getElementById("musicAmbient");
 const musicCountdown = document.getElementById("musicCountdown");
 const musicFinal = document.getElementById("musicFinal");
 
-// ================= DATA (forma robusta) =================
+// ================= DATA =================
 const targetDate = TEST_MODE
   ? new Date(Date.now() + 30000)
-  : new Date(2026, 0, 1, 0, 0, 0);
+  : new Date("2026-01-01T00:00:00");
 
 // ================= ESTADO =================
 let started = false;
@@ -33,12 +33,6 @@ startScreen.onclick = () => {
   // Música ambiente
   musicAmbient.volume = 0.5;
   musicAmbient.play();
-
-  // 🔑 Desbloqueia a música da contagem (truque clássico)
-  musicCountdown.volume = 0.8;
-  musicCountdown.play();
-  musicCountdown.pause();
-  musicCountdown.currentTime = 0;
 };
 
 // ================= MOSTRA 2025 =================
@@ -62,6 +56,7 @@ function startCountdown() {
 
     if (counter <= 1) {
       clearInterval(cd);
+
       setTimeout(() => {
         countdownEl.classList.add("hidden");
         startFinale();
@@ -82,21 +77,58 @@ function startFinale() {
   writeYear2026();
 }
 
+// ================= ESCRITA DO 2026 =================
+function writeYear2026() {
+  const year = "2026";
+  yearEl.textContent = "";
+  yearEl.classList.remove("hidden");
+  yearEl.classList.add("enter");
+
+  let i = 0;
+  const writer = setInterval(() => {
+    yearEl.textContent += year[i];
+    i++;
+
+    if (i >= year.length) {
+      clearInterval(writer);
+      setTimeout(writeMessage, 700);
+    }
+  }, 500);
+}
+
+// ================= MENSAGEM =================
+function writeMessage() {
+  const text = "🎉🥳🎊 Feliz Ano Novo 🎊🥳🎉";
+  messageEl.textContent = "";
+  messageEl.classList.remove("hidden");
+
+  let i = 0;
+  const writer = setInterval(() => {
+    messageEl.textContent += text[i];
+    i++;
+
+    if (i >= text.length) {
+      clearInterval(writer);
+    }
+  }, 120);
+}
+
 // ================= TIMER GLOBAL =================
 setInterval(() => {
   if (!started || countdownStarted) return;
 
   const diff = Math.floor((targetDate - new Date()) / 1000);
 
+  if (diff > 10) {
+    show2025();
+  }
+
   if (diff <= 10 && diff > 0) {
     musicAmbient.pause();
     musicAmbient.currentTime = 0;
 
-    // ⏳ pequeno delay = compatibilidade garantida
-    setTimeout(() => {
-      musicCountdown.currentTime = 0;
-      musicCountdown.play();
-    }, 200);
+    musicCountdown.volume = 0.8;
+    musicCountdown.play();
 
     yearEl.classList.add("hidden");
     startCountdown();
@@ -159,6 +191,3 @@ function animate() {
 }
 
 animate();
-
-
-
