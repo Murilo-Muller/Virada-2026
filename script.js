@@ -1,5 +1,5 @@
 // ================= CONFIG =================
-const TEST_MODE = false; // false no dia real
+const TEST_MODE = true; // false no dia real
 
 // ================= ELEMENTOS =================
 const startScreen = document.getElementById("startScreen");
@@ -191,3 +191,4 @@ function animate() {
 }
 
 animate();
+
