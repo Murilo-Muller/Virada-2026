@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(circle at bottom, #222, #000);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  color: white;
+}
+
+/* Tela inicial */
+.start-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #111, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.start-screen h1 {
+  font-size: 42px;
+  color: gold;
+  animation: glow 2s infinite alternate;
+}
+
+/* Canvas */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Conteúdo */
+.container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.year {
+  font-size: 140px;
+  font-weight: bold;
+  text-shadow: 0 0 25px gold;
+}
+
+.year.enter {
+  animation: shine 2s infinite alternate;
+}
+
+.countdown {
+  font-size: 160px;
+  font-weight: bold;
+  color: crimson;
+  animation: pulse 1s infinite;
+}
+
+.message {
+  font-size: 48px;
+  color: gold;
+  margin-top: 20px;
+  animation: glow 2s infinite alternate;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animações */
+@keyframes pulse {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(1.15); opacity: 0.6; }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px gold; }
+  to { text-shadow: 0 0 40px gold; }
+}
+
+@keyframes shine {
+  from { text-shadow: 0 0 20px gold; }
+  to { text-shadow: 0 0 60px gold; }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Virada de Ano 2026 🎆</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="startScreen" class="start-screen">
+  <h1>🎆 Clique para começar 🎆</h1>
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container hidden">
+  <div id="year" class="year hidden"></div>
+  <div id="countdown" class="countdown hidden"></div>
+  <div id="message" class="message hidden"></div>
+</div>
+
+<!-- 🎵 ÁUDIOS -->
+<audio id="musicAmbient" loop>
+  <source src="ambient.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="musicCountdown">
+  <source src="countdown.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="musicFinal" loop>
+  <source src="final.mp3" type="audio/mpeg">
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
